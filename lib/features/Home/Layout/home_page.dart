@@ -12,19 +12,31 @@ class HomePage extends StatelessWidget {
         child: Column(
           children: [
             buildHeader(context),
+            const SizedBox(
+              height: 10,
+            ),
+            buildSearchForm(),
+            const SizedBox(
+              height: 10,
+            ),
             SizedBox(
-              height: 50,
-              child: TextFormField(
-                decoration: InputDecoration(
-                    prefixIcon: Icon(Icons.search_outlined),
-                    hintText: "Cari Barang",
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(16.0),
-                        borderSide: BorderSide(color: Colors.grey, width: 0.5)),
-                    enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(16.0),
-                        borderSide:
-                            BorderSide(color: Colors.grey, width: 0.5))),
+              height: MediaQuery.of(context).size.height * 0.1,
+              width: MediaQuery.of(context).size.width,
+              child: ListView.builder(
+                shrinkWrap: true,
+                scrollDirection: Axis.horizontal,
+                itemCount: 10,
+                itemBuilder: (context, index) {
+                  return Container(
+                    margin: const EdgeInsets.only(right: 10),
+                    height: MediaQuery.of(context).size.height * 0.1,
+                    width: MediaQuery.of(context).size.width * 0.15,
+                    decoration: BoxDecoration(
+                      color: Colors.grey,
+                      shape: BoxShape.circle,
+                    ),
+                  );
+                },
               ),
             )
           ],
@@ -68,6 +80,24 @@ class HomePage extends StatelessWidget {
                   BorderSide(color: Colors.grey, width: 0.5))),
         )
       ],
+    );
+  }
+
+  TextFormField buildSearchForm() {
+    return TextFormField(
+      decoration: InputDecoration(
+          prefixIcon: Icon(Icons.search_outlined),
+          hintText: "Cari Barang",
+          border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(16.0),
+              borderSide: BorderSide(color: Colors.grey, width: 0.5)),
+          constraints: BoxConstraints(maxHeight: 45),
+          focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(16.0),
+              borderSide: BorderSide(color: Colors.grey, width: 0.5)),
+          enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(16.0),
+              borderSide: BorderSide(color: Colors.grey, width: 0.5))),
     );
   }
 }
